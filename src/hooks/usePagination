@@ -1,0 +1,50 @@
+// src/hooks/usePagination.ts
+import { useCallback } from "react";
+import { PaginationProps } from "../types/types";
+
+/**
+ * Custom hook to encapsulate the pagination logic.
+ * It returns two handlers: one for the "Next" button and one for the "Prev" button.
+ *
+ * @param pageNum - The current starting index for pagination.
+ * @param qSize - The total number of questions.
+ * @param search - The current search query.
+ * @param title - The title of the page.
+ * @param setQuestionPage - Function to update the page state.
+ * @returns An object with handleNext and handlePrev functions.
+ */
+const usePagination = ({
+  pageNum,
+  qSize,
+  search,
+  title,
+  setQuestionPage,
+}: PaginationProps) => {
+    /**
+   * Handler for the Next button.
+   * Increments the starting index by 5. If the new index exceeds or equals the total number of questions,
+   * wrap around back to the first page.
+   */
+  const handleNext = useCallback(() => {
+    if (!setQuestionPage) return;
+    // Calculate the next page index; if we reach or exceed the total, wrap to the first page.
+    const newPageNum = pageNum + 5 >= qSize ? 0 : pageNum + 5;
+    setQuestionPage(newPageNum, search || "", title);
+  }, [pageNum, qSize, search, title, setQuestionPage]);
+
+  /**
+       * Handler for the Prev button.
+       * Decrements the starting index by 5. Since the Prev button is only shown when pageNum > 0,
+       * we do not need to wrap around.
+       */
+  const handlePrev = useCallback(() => {
+    if (!setQuestionPage) return;
+    // Calculate the previous page index; ensure it does not go below zero.
+    const newPageNum = pageNum - 5 < 0 ? 0 : pageNum - 5;
+    setQuestionPage(newPageNum, search || "", title);
+  }, [pageNum, search, title, setQuestionPage]);
+
+  return { handleNext, handlePrev };
+};
+
+export default usePagination;

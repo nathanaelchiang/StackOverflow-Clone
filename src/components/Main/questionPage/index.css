@@ -1,0 +1,17 @@
+.btns {
+    margin-right: 15%;
+}
+
+.question_list:last-child {
+    border-bottom: #000000 1px dashed;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+

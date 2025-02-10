@@ -1,0 +1,41 @@
+/* Pagination container for alignment */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+/* Common styles for both buttons */
+.next-btn, .prev-btn {
+    padding: 8px 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #0056b3;
+    border: 1px solid #004494;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+.next-btn:hover, .prev-btn:hover {
+    background-color: #004494;
+    border-color: #003b80;
+}
+
+/* Active (clicked) effect */
+.next-btn:active, .prev-btn:active {
+    background-color: #003b80;
+    transform: scale(0.98);
+}
+
+/* Disabled button (if needed in the future) */
+.next-btn:disabled, .prev-btn:disabled {
+    background-color: #b0b0b0;
+    border-color: #999999;
+    cursor: not-allowed;
+    box-shadow: none;
+}
